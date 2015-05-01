@@ -14,6 +14,7 @@ $db = new PDO('mysql:host=localhost;dbname=employees;charset=utf8',
 $sql = 'select employees.emp_no, employees.first_name from dept_manager left join employees on dept_manager.emp_no = employees.emp_no where dept_manager.dept_no = \'d001\' limit 5';
 
 
+
 foreach($db->query($sql) as $row) {
    print_r($row);
 }
@@ -22,6 +23,12 @@ foreach($db->query($sql) as $row) {
 echo "</br></br>";
 echo 'hello world';
 echo "</br></br>";
+
+$sql1 = 'select employees.emp_no, employees.first_name, employees.last_name, salaries.salary from employees left join salaries on employees.emp_no=salaries.emp_no order by salary DESC limit 1';
+
+foreach($db->query($sql1) as $row) {
+   print_r($row);
+}
 
 
 ?>

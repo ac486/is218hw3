@@ -1,3 +1,8 @@
+<html>
+<head>
+<title>IS218 Homework 3</title>
+</head>
+<body>
 <?php
 error_reporting(-1);
 ini_set('display_errors', 'On');
@@ -31,5 +36,7 @@ foreach($db->query($sql1) as $row) {
    print_r($row);
 }
 
-
 ?>
+</body>
+</html>
+

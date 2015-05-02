@@ -24,6 +24,7 @@ echo "</br></br>";
 echo 'hello world';
 echo "</br></br>";
 
+echo "1. Who is the highest paid employee?</br>";
 $sql1 = 'select employees.emp_no, employees.first_name, employees.last_name, salaries.salary from employees left join salaries on employees.emp_no=salaries.emp_no order by salary DESC limit 1';
 
 foreach($db->query($sql1) as $row) {

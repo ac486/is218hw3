@@ -29,25 +29,31 @@ echo "</br></br>";
 echo 'hello world';
 echo "</br></br>";
 
+$sql1 = 'select employees.emp_no, employees.first_name, employees.last_name, salaries.salary from employees left join salaries on employees.emp_no=salaries.emp_no order by salary DESC limit 1';
 
-
-echo '<a href='.'"?sql=1"'.'>'.'1. Who is the highest paid employee?'.'</a>';
+echo '1. Who is the highest paid employee?'.'</a>';
 echo "</br></br>";
 $sql1 = 'select employees.emp_no, employees.first_name, employees.last_name, salaries.salary from employees left join salaries on employees.emp_no=salaries.emp_no order by salary DESC limit 1';
-if($_GET["sql"] === ""){//fix the link creation here
 foreach($db->query($sql1) as $row){
    echo $row[0].' '.$row[1].' '.$row[2].' '.$row[3];
 }
-}
-print_r($_GET["sql"]);
+
 echo "</br></br>";
 
 echo "2. Who is the highest paid employee between 1985 and 1981?</br>";
 $sql2 = 'select employees.emp_no, employees.first_name, employees.last_name, salaries.salary,  salaries.from_date, salaries.to_date from employees left join salaries on employees.emp_no=salaries.emp_no where salaries.from_date>=\'1981-01-01\' and salaries.to_date<=\'1985-12-31\' order by salary DESC limit 1';
-
+echo "</br>";
+foreach($db->query($sql2) as $row){
+   echo $row[0].' '.$row[1].' '.$row[2].' '.$row[3];
+}
+echo "</br></br>";
 echo "3. Which department currently has highest paid department manager?</br>";
-$sql3 = 'select employees.emp_no, employees.first_name, employees.last_name, salaries.salary,  salaries.from_date, salaries.to_date from employees left join salaries on employees.emp_no=salaries.emp_no where salaries.from_date>=\'1981-01-01\' and salaries.to_date<=\'1985-12-31\' order by salary DESC limit 1';
-
+echo "</br>";
+$sql3 = 'select departments.dept_name, dept_manager.dept_no, max(salaries.salary) from departments, dept_manager left join salaries on dept_manager.emp_no=salaries.emp_no where salaries.to_date=\'9999-01-01\' and dept_manager.to_date=\'9999-01-01\' and dept_manager.dept_no=departments.dept_no group by dept_manager.dept_no order by salaries.salary desc limit 1';
+foreach($db->query($sql3) as $row){
+   echo $row[0].' '.$row[1].' '.$row[2];
+}
+echo "</br></br>";
 echo "4. What are the titles of all the departments?</br>";
 $sql4 = 'select * from departments order by departments.dept_no limit 9';
 

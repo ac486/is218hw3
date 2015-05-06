@@ -29,14 +29,18 @@ echo "</br></br>";
 echo 'hello world';
 echo "</br></br>";
 
-echo "1. Who is the highest paid employee?</br>";
+
+
+echo '<a href='.'"?sql=1"'.'>'.'1. Who is the highest paid employee?'.'</a>';
+echo "</br></br>";
 $sql1 = 'select employees.emp_no, employees.first_name, employees.last_name, salaries.salary from employees left join salaries on employees.emp_no=salaries.emp_no order by salary DESC limit 1';
-
-foreach($db->query($sql1) as $row) {
-   print_r($row);
+if($_GET["sql"] === ""){//fix the link creation here
+foreach($db->query($sql1) as $row){
+   echo $row[0].' '.$row[1].' '.$row[2].' '.$row[3];
 }
-
-echo "</br>";
+}
+print_r($_GET["sql"]);
+echo "</br></br>";
 
 echo "2. Who is the highest paid employee between 1985 and 1981?</br>";
 $sql2 = 'select employees.emp_no, employees.first_name, employees.last_name, salaries.salary,  salaries.from_date, salaries.to_date from employees left join salaries on employees.emp_no=salaries.emp_no where salaries.from_date>=\'1981-01-01\' and salaries.to_date<=\'1985-12-31\' order by salary DESC limit 1';

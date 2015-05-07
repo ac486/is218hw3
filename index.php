@@ -98,6 +98,21 @@ foreach($db->query($sql10) as $row){
    echo $row[0].'</br>';
 }
 echo "</br></br>";
+
+echo "<h3>Add or update this employee list</h3>";
+$Sql = 'select * from employees limit 5';
+foreach($db->query($Sql) as $row){
+   echo $row[0].' '.$row[1].' '.$row[2].' '.$row[3].' '.$row[4].' '.$row[5];
+   echo '<form action="edit.php">';//displays edit button after each result
+   echo '<input type="submit" value="Edit">';
+   echo '</form>';
+}
+
+echo '<form action="insert.php">';//displays insert button
+echo '<input type="submit" value="Add a new employee">';
+echo '</form>';
+
+
 ?>
 </body>
 </html>

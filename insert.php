@@ -19,3 +19,6 @@ Hire Date:<br>
 <br><br>
 <input type="submit" value="Submit">
 </form>
+<form action="index.php"> 
+<input type="submit" value="Cancel">
+</form>

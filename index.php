@@ -112,6 +112,7 @@ echo '<form action="insert.php">';//displays insert button
 echo '<input type="submit" value="Add a new employee">';
 echo '</form>';
 
+//use something with the $_GET array to communicate with pdo statements
 
 ?>
 </body>

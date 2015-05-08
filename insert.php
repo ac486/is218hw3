@@ -1,4 +1,14 @@
-<form action="action_page.php">
+<?php
+  if( $_POST["emp_no"] || $_POST["birth"] )
+  {
+     echo "Your submission has been added</br> ";
+     echo "Welcome ". $_POST['emp_no']. "<br />";
+     echo "You are ". $_POST['birth']. " years old.";
+     exit();
+  }
+?>
+
+<form action="" method = "POST">
 Employee #:<br>
 <input type="text" name="emp_no" value="#">
 <br>

@@ -7,6 +7,7 @@
 <?php
 error_reporting(-1);
 ini_set('display_errors', 'On');
+include 'pages.php';
 
 $db = new PDO('mysql:host=localhost;dbname=employees;charset=utf8',
    'root',
@@ -17,15 +18,22 @@ $db = new PDO('mysql:host=localhost;dbname=employees;charset=utf8',
    )
 );
 
-$sql1 = 'select employees.emp_no, employees.first_name, employees.last_name, salaries.salary from employees left join salaries on employees.emp_no=salaries.emp_no order by salary DESC limit 1';
+//$sql1 = 'select employees.emp_no, employees.first_name, employees.last_name, salaries.salary from employees left join salaries on employees.emp_no=salaries.emp_no order by salary DESC limit 1';
 
-echo '1. Who is the highest paid employee?'.'</a>';
+//echo '1. Who is the highest paid employee?';
+
+if(isset($_GET['page'])){
+  $qry = new $_GET['page'];
+} else{
+echo '<a href="?page=sql1">1. Who is the highest paid employee?</a>';
 echo "</br></br>";
+}
+/*
 $sql1 = 'select employees.emp_no, employees.first_name, employees.last_name, salaries.salary from employees left join salaries on employees.emp_no=salaries.emp_no order by salary DESC limit 1';
 foreach($db->query($sql1) as $row){
    echo $row[0].' '.$row[1].' '.$row[2].' '.$row[3],'</br>';
 }
-
+*/
 echo "</br></br>";
 
 echo "2. Who is the highest paid employee between 1985 and 1981?</br>";
